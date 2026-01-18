@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.input.KeyCodeCombination?>
+
+<?import javafx.geometry.Insets?>
+<AnchorPane fx:id="anchorPane" xmlns:fx="http://javafx.com/fxml" fx:controller="com.cgvsu.GuiController">
+    <MenuBar>
+        <Menu mnemonicParsing="false" text="File">
+            <MenuItem mnemonicParsing="false" onAction="#onOpenModelMenuItemClick" text="Load Model">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" control="DOWN" meta="UP" shift="UP" shortcut="UP" code="F"/>
+                </accelerator>
+            </MenuItem>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Camera Options">
+            <MenuItem mnemonicParsing="false" onAction="#handleCameraForward" text="Forward">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" control="UP" meta="UP" shift="UP" shortcut="UP" code="UP"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleCameraBackward" text="Backward">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" control="UP" meta="UP" shift="UP" shortcut="UP" code="DOWN"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleCameraLeft" text="Left">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" control="UP" meta="UP" shift="UP" shortcut="UP" code="LEFT"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleCameraRight" text="Right">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" control="UP" meta="UP" shift="UP" shortcut="UP" code="RIGHT"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleCameraUp" text="Up">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" control="UP" meta="UP" shift="UP" shortcut="UP" code="W"/>
+                </accelerator>
+            </MenuItem>
+            <MenuItem mnemonicParsing="false" onAction="#handleCameraDown" text="Down">
+                <accelerator>
+                    <KeyCodeCombination alt="UP" control="UP" meta="UP" shift="UP" shortcut="UP" code="S"/>
+                </accelerator>
+            </MenuItem>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Options">
+            <MenuItem mnemonicParsing="false" onAction="#toggleDarkTheme" text="Toggle Dark Theme"/>
+        </Menu>
+    </MenuBar>
+
+    <BorderPane fx:id="borderPane" AnchorPane.topAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" style="-fx-border-color: gray; -fx-border-width: 2;">
+        <center>
+            <Canvas fx:id="canvas" width="1600" height="870"/>
+        </center>
+    </BorderPane>
+
+    <VBox fx:id="transformationBox" spacing="10" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="50.0">
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label fx:id="selectModelLabel" text="Select Model"/>
+            <ComboBox fx:id="modelComboBox" promptText="Select Model"/>
+        </HBox>
+
+        <VBox spacing="5">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="translationLabel" text="Translation"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="XTranslationLabel" text="X"/>
+                <TextField fx:id="translationX" promptText="X"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="YTranslationLabel" text="Y"/>
+                <TextField fx:id="translationY" promptText="Y"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="ZTranslationLabel" text="Z"/>
+                <TextField fx:id="translationZ" promptText="Z"/>
+            </HBox>
+        </VBox>
+        <VBox spacing="5">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="scaleLabel" text="Scale"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="XScaleLabel" text="X"/>
+                <TextField fx:id="scaleX" promptText="X"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="YScaleLabel" text="Y"/>
+                <TextField fx:id="scaleY" promptText="Y"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="ZScaleLabel" text="Z"/>
+                <TextField fx:id="scaleZ" promptText="Z"/>
+            </HBox>
+        </VBox>
+        <VBox spacing="5">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="rotationLabel" text="Rotation"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="XRotationLabel" text="X"/>
+                <TextField fx:id="rotationX" promptText="X"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="YRotationLabel" text="Y"/>
+                <TextField fx:id="rotationY" promptText="Y"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="ZRotationLabel" text="Z"/>
+                <TextField fx:id="rotationZ" promptText="Z"/>
+            </HBox>
+        </VBox>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Button fx:id="applyButton" text="Apply"/>
+            <Button fx:id="deleteButton" text="Delete Model"/>
+            <Button fx:id="deletePolygonButton" text="Delete Polygon" onAction="#deletePolygon"/>
+        </HBox>
+
+        <RadioButton fx:id="useTriangleRadioButton" text="Triangulation"/>
+        <RadioButton fx:id="useColorRadioButton" text="Color with Triangulation"/>
+        <RadioButton fx:id="useTextureRadioButton" text="Texture"/>
+        <RadioButton fx:id="useAllColorRadioButton" text="All Color"/>
+        <RadioButton fx:id="useWithoutColorRadioButton" text="Without Color"/>
+
+        <TitledPane animated="false" prefHeight="100.0" prefWidth="300.0" text="Cameras Manager">
+            <content>
+                <VBox prefHeight="200.0" prefWidth="100.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                            <children>
+                                <VBox alignment="TOP_CENTER" prefHeight="107.0" prefWidth="143.0">
+                                    <children>
+                                        <Label text="Position" />
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                            <children>
+                                                <Label text="X:  " />
+                                                <TextField fx:id="textFieldCameraPositionX" prefHeight="25.0" prefWidth="100.0" promptText="0.0" text="100" />
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                            <children>
+                                                <Label text="Y:  " />
+                                                <TextField fx:id="textFieldCameraPositionY" prefHeight="25.0" prefWidth="100.0" promptText="0.0" text="100" />
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                            <children>
+                                                <Label text="Z:  " />
+                                                <TextField fx:id="textFieldCameraPositionZ" prefHeight="25.0" prefWidth="100.0" promptText="0.0" text="100" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+
+                                <VBox alignment="TOP_CENTER" prefHeight="107.0" prefWidth="143.0">
+                                    <children>
+                                        <Label prefHeight="17.0" prefWidth="181.0" text="The point of direction" />
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                            <children>
+                                                <Label text="X:  " />
+                                                <TextField fx:id="textFieldCameraPointOfDirectionX" prefHeight="25.0" prefWidth="100.0" promptText="0.0" text="0" />
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                            <children>
+                                                <Label text="Y:  " />
+                                                <TextField fx:id="textFieldCameraPointOfDirectionY" prefHeight="25.0" prefWidth="100.0" promptText="0.0" text="0" />
+                                            </children>
+                                        </HBox>
+                                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                            <children>
+                                                <Label text="Z:  " />
+                                                <TextField fx:id="textFieldCameraPointOfDirectionZ" prefHeight="25.0" prefWidth="100.0" promptText="0.0" text="0" />
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </content>
+        </TitledPane>
+
+        <Button fx:id="addNewCamera" text="Add a new camera"/>
+        <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="222.0">
+            <children>
+                <Label alignment="CENTER" text="Cameras" />
+                <ScrollPane id="camerasScroll" prefHeight="80.0" prefWidth="203.0">
+                    <content>
+                        <VBox fx:id="camerasVBox" prefHeight="80.0" prefWidth="400.0" spacing="5.0">
+                            <padding>
+                                <Insets left="5.0" top="5.0" />
+                            </padding>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+            </children>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <CheckBox fx:id="saveDeformationCheckBox" text="Save Deformation" AnchorPane.leftAnchor="10.0" AnchorPane.bottomAnchor="50.0"/>
+                <Button fx:id="saveButton" text="Save Model" AnchorPane.leftAnchor="10.0" AnchorPane.bottomAnchor="50.0"/>
+            </HBox>
+        </VBox>
+    </VBox>
+</AnchorPane>
