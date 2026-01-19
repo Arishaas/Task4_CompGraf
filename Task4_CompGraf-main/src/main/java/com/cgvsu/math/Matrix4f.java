@@ -108,7 +108,6 @@ public class Matrix4f extends AbstractMatrix {
     }
 
 
-    // лан, это мне в лом придумывать, как перенести в родителя. пусть будет у каждого свое. Опять же, есть предпочтения - пишите
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -124,7 +123,6 @@ public class Matrix4f extends AbstractMatrix {
         return true;
     }
 
-    // Геттер для элементов матрицы? нужен ли он тут... хзхз
     public float[][] getElements() {
         return elements;
     }
