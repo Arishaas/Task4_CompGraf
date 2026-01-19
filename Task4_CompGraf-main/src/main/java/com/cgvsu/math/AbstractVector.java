@@ -2,7 +2,6 @@ package com.cgvsu.math;
 
 
 
-// todo навести красоту, сейчас мне впадлу...
 public abstract class AbstractVector {
     protected float[] components;
     protected float length;
@@ -40,7 +39,6 @@ public abstract class AbstractVector {
 
     protected abstract AbstractVector instantiateVector(float[] elements);
 
-    // Вычисление длины вектора ... пол факту, тут надо поставить каклкДлины, на всякий, но опять же... мне впадлу
     public float length() {
         calcLength();
         return length;
@@ -84,9 +82,6 @@ public abstract class AbstractVector {
     public void subV(AbstractVector other) {
         this.components = subVector(other).components;
     }
-
-    // я дол сих пор хз. что это...
-    // todo понять, что это нахуй такое и надо ли оно :? ... Хз что это, но пусть будет.. мало ли
     public void sub(AbstractVector first, AbstractVector second) {
         equalsLength(first);
         equalsLength(second);
