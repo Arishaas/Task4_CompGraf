@@ -54,7 +54,6 @@ public abstract class AbstractMatrix {
         }
     }
 
-    // всякое говно, которое, к сожалению, нужно :/
     protected abstract AbstractMatrix createInstance(float[] elements);
 
     protected abstract AbstractMatrix createInstance(float[][] elements);
