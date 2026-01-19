@@ -1,7 +1,6 @@
 package com.cgvsu.render_engine;
 
 import com.cgvsu.math.Matrix4f;
-//import com.cgvsu.math.Quaternion;
 import com.cgvsu.math.Vector3f;
 import com.cgvsu.math.Vector4f;
 
@@ -11,9 +10,7 @@ import static java.lang.Math.sin;
 public class AffineTransformations {
 
     //По тзшке вектора столбцы -> умножаем справа.
-    //прокси метод а то поди кватернионы бахну.
     public static Matrix4f rotate(float alpha, float beta, float gamma) {
-        //todo понять, что с кватернионами не так - где-то не так умножение кватернионов... фак
         return rotateIntoMatrix(alpha, beta, gamma);
     }
     /**
